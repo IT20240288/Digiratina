@@ -1,0 +1,56 @@
+.reservation-container .container-sm {
+  width: 500px;
+  border: 2px solid black;
+  float: right;
+  display: block;
+  margin-right: 5%;
+  margin-top: 5%;
+  border-radius: 20px;
+}
+
+.reservation-container .btn-primary {
+  display: inline-block;
+  width: 100px;
+  margin: 5px;
+}
+.reservation-container .btn {
+  display: inline-block;
+  margin-bottom: 10px;
+}
+.reservation-container .reserveimg {
+  display: block;
+  margin-left: 4%;
+  margin-top: 5%;
+  margin-right: auto;
+  width: 50%;
+  height: 580px;
+  border-radius: 20px;
+  float: left;
+}
+.reservation-container .form-control {
+  height: 35px;
+  width: 300px;
+}
+.payment-container {
+  border: 4px solid black;
+  padding-bottom: 2%;
+  width: 45%;
+  margin-left: 26%;
+  border-radius: 20px;
+}
+.view-reservation-container .btn-warning {
+  display: inline-block;
+  margin-bottom: 10px;
+  width: 50px;
+  margin: 5px;
+  height: 30px;
+  padding-bottom: 30px;
+}
+.view-reservation-container .btn-danger {
+  display: inline-block;
+  margin-bottom: 10px;
+  width: 50px;
+  margin: 5px;
+  height: 30px;
+  padding-bottom: 30px;
+}
