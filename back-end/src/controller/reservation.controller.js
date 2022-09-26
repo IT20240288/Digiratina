@@ -1,44 +1,65 @@
 const Reservation = require("../models/reservation");
 
-exports.addReservation = async ctx => {
+exports.createReservation = async (req, res) => {
   try {
-    const data = ctx.request.body;
-    const reservation = new Reservation(data);
-    const temp = await reservation.save();
-
-    if (temp) {
-      return (ctx.body = { temp });
+    const reservation = new Reservation(req.body);
+    const savedReservation = await reservation.save();
+    if (savedReservation) {
+      res.status(201).send({ message: "success!", data: savedReservation });
     } else {
-      console.log("Student add failed!");
+      res.status(400).send({ message: "failed!", data: savedReservation });
     }
-  } catch (error) {
-    console.log("Student adding erroe", error);
+  } catch (e) {
+    console.log("error", e);
+    res.status(500).send({ message: "error", data: e });
   }
 };
 
-exports.getAllReservation = async ctx => {
+exports.getReservation = async (req, res) => {
   try {
-    const data = await Reservation.find({});
-    if (data) {
-      return (ctx.body = { data });
-    } else {
-      console.log("Student Get Failed!");
-    }
-  } catch (error) {
-    console.log("error", error);
+    const reservation = await Reservation.findById(req.params.id);
+    res.json(reservation);
+  } catch (e) {
+    console.log("error", e);
+    res.status(500).send({ message: "error", data: e });
   }
 };
 
-exports.getReservation = async ctx => {
+exports.getAllReservation = async (req, res) => {
   try {
-    const studentId = ctx.params.studentId;
-    const data = await Reservation.findById(studentId);
+    const reservation = await Reservation.find({});
+    res.json(reservation);
+  } catch (e) {
+    console.log("error", e);
+    res.status(500).send({ message: "error", data: e });
+  }
+};
+
+exports.deleteReservation = async (req, res) => {
+  try {
+    const deleteReservation = await Reservation.deleteOne(req.params);
+    res.json(deleteReservation);
+  } catch (e) {
+    console.log("error", e);
+    res.status(500).send({ message: "error", data: e });
+  }
+};
+
+exports.updateReservation = async (req, res) => {
+  try {
+    const data = req.body;
     if (data) {
-      return (ctx.body = { data });
+      const updateReservation = await Reservation.updateOne(
+        { _id: req.params.id },
+        { ...data }
+      );
+      console.log("updated ", updateReservation);
+      res.status(200).send({ message: "success", data: updateReservation });
     } else {
-      console.log("Student get failed!");
+      res.status(204).send({ message: "update data can not be empty!" });
     }
-  } catch (error) {
-    console.log("error", error);
+  } catch (e) {
+    console.log("error", e);
+    res.status(500).send({ message: "error", data: e });
   }
 };

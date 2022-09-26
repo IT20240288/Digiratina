@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
 import "./reservation.css";
 import Swal from "sweetalert2";
+import axios from "axios";
+import { useNavigate } from "react-router";
 
 export default function ViewReservation() {
-  const [reservation] = useState([]);
+  const [reservation, setReservation] = useState([]);
+  const navigate = useNavigate();
 
   const swalWithBootstrapButtons = Swal.mixin({
     customClass: {
@@ -12,7 +15,33 @@ export default function ViewReservation() {
     },
     buttonsStyling: false
   });
-
+  const getData = async () => {
+    try {
+      const res = await axios.get("http://localhost:4000/api/reservation/");
+      if (res.status === 200) {
+        setReservation(res.data);
+        console.log("data", res.data);
+      }
+    } catch (e) {
+      console.log("error", e);
+    }
+  };
+  const ondelete = async id => {
+    try {
+      const res = await axios.delete(
+        `http://localhost:4000/api/reservation/${id}`
+      );
+      if (res.status === 200) {
+        alert("Delete Sucessfull!");
+        getData();
+      }
+    } catch (e) {
+      console.log("error", e);
+    }
+  };
+  useEffect(() => {
+    getData();
+  }, []);
   return (
     <div>
       <div className="view-reservation-container">
@@ -35,22 +64,26 @@ export default function ViewReservation() {
                 <tr key={reserve._id}>
                   <td>{reserve.roomType}</td>
                   <td>{reserve.checkIn}</td>
-                  <td>{reserve.checkIn}</td>
+                  <td>{reserve.checkOut}</td>
                   <td>{reserve.noOfRooms}</td>
                   <td>{reserve.noOfKids}</td>
                   <td>{reserve.noOfAdults}</td>
 
                   <td>
-                    <a
+                    <button
                       className="btn btn-warning"
-                      href={`UpdateReservation/${reserve._id}`}
+                      onClick={() => {
+                        navigate("/AddReservation", {
+                          state: { id: reserve._id }
+                        });
+                      }}
                     >
                       <i class="material-icons">edit</i>
-                    </a>
+                    </button>
                     &nbsp;
-                    <a className="btn btn-danger" href="#">
-                      <i className="material-icons">delete_forever</i>
-                    </a>
+                    <button onClick={() => ondelete(reserve._id)}>
+                      <i className="material-icons">delete</i>
+                    </button>
                   </td>
                 </tr>
               ))}

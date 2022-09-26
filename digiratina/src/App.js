@@ -9,7 +9,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/Login" element={<Login />} />
+        {/* <Route path="/Login" element={<Login />} /> */}
         <Route path="/AddReservation" element={<AddReservation />} />
         <Route path="/ViewReservation" element={<ViewReservation />} />
         <Route path="/Availability" element={<Availability />} />
