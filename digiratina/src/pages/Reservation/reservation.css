@@ -27,17 +27,20 @@
   border-radius: 20px;
   float: left;
 }
-.reservation-container .form-control {
+.form-control {
   height: 35px;
   width: 300px;
+  display: flex;
 }
-.payment-container {
-  border: 4px solid black;
-  padding-bottom: 2%;
-  width: 45%;
-  margin-left: 26%;
-  border-radius: 20px;
+.reservation-container .lable {
+  display: flex;
+  text-align: center;
+
+  float: left;
+  width: 25%;
+  margin-top: 6px;
 }
+
 .view-reservation-container .btn-warning {
   display: inline-block;
   margin-bottom: 10px;
@@ -53,4 +56,36 @@
   margin: 5px;
   height: 30px;
   padding-bottom: 30px;
+}
+.AddBtn {
+  padding: 10px;
+  margin-top: 25px;
+}
+
+#customers {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#customers td,
+#customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#customers tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+#customers tr:hover {
+  background-color: #ddd;
+}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #047baa;
+  color: white;
 }

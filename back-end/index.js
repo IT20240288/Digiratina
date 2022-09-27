@@ -20,6 +20,9 @@ mongoose.connect(process.env.DB_CONNECT, err => {
 const reservationRoutes = require("./src/routes/reservation.routes");
 app.use("/api/reservation", reservationRoutes);
 
+const loginRoutes = require("./src/routes/login.routes");
+app.use("/api/login", loginRoutes);
+
 app.listen(4000, err => {
   if (!err) {
     console.log("successfully connected to the port ", 4000);

@@ -3,6 +3,7 @@ import "./reservation.css";
 import Swal from "sweetalert2";
 import axios from "axios";
 import { useNavigate } from "react-router";
+import { Link } from "react-router-dom";
 
 export default function ViewReservation() {
   const [reservation, setReservation] = useState([]);
@@ -47,7 +48,7 @@ export default function ViewReservation() {
       <div className="view-reservation-container">
         <center>
           <h1>Reservations</h1>
-          <table class="table table-hover">
+          <table id="customers">
             <thead>
               <tr>
                 <th scope="col">Room Type</th>
@@ -73,31 +74,29 @@ export default function ViewReservation() {
                     <button
                       className="btn btn-warning"
                       onClick={() => {
-                        navigate("/AddReservation", {
+                        navigate("/UpdateReservation", {
                           state: { id: reserve._id }
                         });
                       }}
                     >
-                      <i class="material-icons">edit</i>
+                      <i class="icons">edit</i>
                     </button>
                     &nbsp;
-                    <button onClick={() => ondelete(reserve._id)}>
-                      <i className="material-icons">delete</i>
+                    <button
+                      className="btn btn-warning"
+                      onClick={() => ondelete(reserve._id)}
+                    >
+                      <i className="icons">delete</i>
                     </button>
                   </td>
                 </tr>
               ))}
             </tbody>
           </table>
-          <button className="btn btn-success">
-            {" "}
-            <a
-              href="/AddReservation"
-              style={{ textDecoration: "none", color: "white" }}
-            >
-              Add New Reservation
-            </a>
-          </button>
+
+          <Link to={"/AddReservation"}>
+            <button className="AddBtn">Add New Reservation</button>
+          </Link>
         </center>
       </div>
     </div>

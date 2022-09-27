@@ -11,9 +11,10 @@
   padding: 25px;
 }
 .loginBtn {
-  width: 280px;
+  width: 100px;
   margin-top: 20px;
   font-weight: 500;
-  height: 50px;
+  height: 40px;
   border-radius: 5px;
+  display: inline-block;
 }
